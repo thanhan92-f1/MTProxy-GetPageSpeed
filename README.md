@@ -29,7 +29,7 @@ Script cài đặt và quản lý MTProto Proxy với giao diện tiếng Việt
 ### Cài đặt tương tác (Khuyến nghị)
 
 ```bash
-curl -o install_mtproxy.sh -L https://raw.githubusercontent.com/MTProxy-GetPageSpeed/main/install_mtproxy.sh
+curl -o install_mtproxy.sh -L https://raw.githubusercontent.com/n4t1412dev/MTProxy-GetPageSpeed/refs/heads/master/install_mtproxy.sh
 sudo bash install_mtproxy.sh
 ```
 
