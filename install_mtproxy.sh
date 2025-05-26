@@ -776,9 +776,17 @@ if [[ $distro =~ "CentOS" ]]; then
   yum -y install epel-release
   yum -y install openssl-devel zlib-devel curl ca-certificates sed cronie vim-common
   yum -y groupinstall "Development Tools"
+  yum -y install glibc-langpack-vi ibus-unikey google-noto-sans-vietnamese-fonts
+  localectl set-locale LANG=vi_VN.UTF-8
+  im-setup  # hoặc im-config -n ibus
+
 elif [[ $distro =~ "Ubuntu" ]] || [[ $distro =~ "Debian" ]]; then
   apt-get update
   apt-get -y install git curl build-essential libssl-dev zlib1g-dev sed cron ca-certificates vim-common
+  apt-get -y install language-pack-vi ibus-unikey fonts-noto-cjk
+  localectl set-locale LANG=vi_VN.UTF-8
+  im-config -n ibus
+
 fi
 timedatectl set-ntp on
 
