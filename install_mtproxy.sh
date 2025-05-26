@@ -786,9 +786,19 @@ timedatectl set-ntp on
 cd /opt || exit 2
 git clone https://github.com/GetPageSpeed/MTProxy.git
 cd MTProxy || exit 2
+
+# ----- BEGIN PATCH: declare prototype để tránh implicit declaration -----
+# chèn dòng extern vào đầu file engine/engine.c
+sed -i '1iextern int do_reload_config(int mode);' engine/engine.c
+# ----- END PATCH -----
+
+# Giữ nguyên các sửa flags nếu cần
 sed -i 's/CFLAGS=/CFLAGS=-fcommon -Wno-implicit-function-declaration /' Makefile
 sed -i 's/LDFLAGS=/LDFLAGS=-fcommon /' Makefile
+
+# Build
 make
+
 BUILD_STATUS=$?
 if [ $BUILD_STATUS -ne 0 ]; then
   echo "$(get_text "error_build_failed" | sed "s/\\\$BUILD_STATUS/$BUILD_STATUS/")"
